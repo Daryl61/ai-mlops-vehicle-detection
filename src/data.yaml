@@ -1,0 +1,5 @@
+path: data
+train: labeled
+val: labeled
+names:
+  0: car

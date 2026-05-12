@@ -1,0 +1,8 @@
+ultralytics
+opencv-python
+mlflow
+fastapi
+uvicorn
+pytest
+pyyaml
+flake8

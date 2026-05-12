@@ -1,0 +1,22 @@
+stream:
+  url: "http://195.196.36.242/mjpg/video.mjpg"
+  frame_interval: 0
+  width: 1280
+  height: 720
+
+detection:
+  model_path: "yolov8n.pt"
+  confidence_threshold: 0.7
+  vehicle_classes: [2]
+
+collector:
+  save_path: "data/raw_frames"
+  min_frames_for_finetune: 100
+
+finetune:
+  epochs: 10
+  batch_size: 16
+  imgsz: 640
+
+mlflow:
+  experiment_name: "vehicle-detection"
