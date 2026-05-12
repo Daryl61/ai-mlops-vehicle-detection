@@ -17,8 +17,11 @@ def monitor_training():
         
         for det in metadata["detections"]:
             all_confidences.append(det["confidence"])
-
-
+    
+    if not all_confidences:
+        print("Henüz veri yok.")
+        return
+   
     avg_confidence = sum(all_confidences) / len(all_confidences)
     mlflow.log_metric("average_confidence", avg_confidence)
     mlflow.log_metric("total_raw_frames", len(files))

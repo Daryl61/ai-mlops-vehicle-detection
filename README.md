@@ -4,7 +4,7 @@ Canlı sehir kamerasından arac tespiti yapan, dusuk guvenilirlikli tahminleri o
 
 ## Proje Yapisi
 
-```
+
 ai-mlops/
 ├── src/
 │   ├── stream.py         # Kameradan frame cekme
@@ -22,7 +22,7 @@ ai-mlops/
 ├── .github/workflows/    # CI/CD pipeline
 ├── Dockerfile
 └── requirements.txt
-```
+
 
 ## Kurulum
 
@@ -30,7 +30,7 @@ ai-mlops/
 git clone https://github.com/Daryl61/ai-mlops-vehicle-detection.git
 cd ai-mlops-vehicle-detection
 python -m venv venv
-venv\Scripts\activate        # Windows
+venv\Scripts\activate        
 pip install -r requirements.txt
 ```
 
