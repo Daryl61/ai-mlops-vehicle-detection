@@ -1,33 +1,32 @@
 import os
 import json
-import cv2
+import cv2 as cv
 import shutil
 import yaml
 
 with open("configs/config.yaml", "r") as f:
     config = yaml.safe_load(f)
 
-
 labeled_path = "data/labeled"
 
 files = [f for f in os.listdir(config["collector"]["save_path"]) if f.endswith(".jpg")]
 
 for file in files:
-    frame = cv2.imread(f"{config['collector']['save_path']}/{file}")
+    frame = cv.imread(f"{config['collector']['save_path']}/{file}")
     h, w = frame.shape[:2]
-    
+
     json_file = file.replace(".jpg", ".json")
     with open(f"{config['collector']['save_path']}/{json_file}", "r") as f:
         metadata = json.load(f)
-    
+
     for det in metadata["detections"]:
         x1, y1, x2, y2 = map(int, det["bbox"])
-        cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
+        cv.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
     
+    frame = cv.resize(frame, (config["stream"]["width"], config["stream"]["height"]))
+    cv.imshow("Etiketle", frame)
+    key = cv.waitKey(0)
 
-    cv2.imshow("Etiketle", frame)
-    key = cv2.waitKey(0) 
-        
     if key == ord('y'):
         label_file = file.replace(".jpg", ".txt")
         with open(f"{labeled_path}/{label_file}", "w") as lf:
@@ -40,11 +39,9 @@ for file in files:
                 lf.write(f"0 {x_center} {y_center} {bw} {bh}\n")
         shutil.copy(f"{config['collector']['save_path']}/{file}", f"{labeled_path}/{file}")
 
-
     elif key == ord('n'):
-            continue
+        continue
     elif key == ord('q'):
-            break
-                
+        break
 
-cv2.destroyAllWindows()
+cv.destroyAllWindows()

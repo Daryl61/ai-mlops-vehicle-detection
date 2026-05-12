@@ -23,7 +23,8 @@ try:
 except KeyboardInterrupt:
     print(f"Toplam işlenen frame sayısı: {count_frames}")
 
-cv.destroyAllWindows()    
+cv.destroyAllWindows()
+
 
 def process_single_frame():
     frame = next(stream_video())
