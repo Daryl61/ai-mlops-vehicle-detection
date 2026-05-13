@@ -1,5 +1,6 @@
 import sys
 sys.path.insert(0, "src")
+sys.path.insert(0, ".")
 from stream import stream_video
 from detect import detect_objects
 
