@@ -22,7 +22,7 @@ for file in files:
     for det in metadata["detections"]:
         x1, y1, x2, y2 = map(int, det["bbox"])
         cv.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
-    
+
     frame = cv.resize(frame, (config["stream"]["width"], config["stream"]["height"]))
     cv.imshow("Etiketle", frame)
     key = cv.waitKey(0)
